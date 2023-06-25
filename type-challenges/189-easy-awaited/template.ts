@@ -9,8 +9,8 @@ type MyAwaited<T extends Promise<unknown>> = T extends Promise<infer X>
   ? X extends Promise<unknown>
     ? MyAwaited<X>
     : X
-  : T; 
-  //never变T就会通过了 MyAwaited<X>->MyAwaited<T> 这时候进去循环，T不是一个promise，就返回T
+  : T;//这里T可以是任何，因为走不到这一步了 
+  //never变T就会通过了 MyAwaited<X>->MyAwaited<T> 这时候进去循环，返回X
 
 // infer 设置一个x未知 infer X只能写在条件类型里面
 
